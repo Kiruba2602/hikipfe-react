@@ -10,6 +10,7 @@ import classNames from '../../layout/dashboardComps/helper';
 function ClientAppointments() {
     const response = useLoaderData();
     const [data, setData] = useState(response.data);
+    console.log(response);
 
     const handleDelete = async (uuid) => {
         await deletePracticeAppointments(uuid);
@@ -36,7 +37,7 @@ function ClientAppointments() {
                                         {appointment.location_name}
                                     </p>
                                     <ul className="mt-2 text-sm text-gray-900 list-disc list-inside">
-                                        {appointment.services_name.map((service, index) => (
+                                        {(appointment.services_name || []).map((service, index) => (
                                             <li key={index}>{service}</li>
                                         ))}
                                     </ul>
